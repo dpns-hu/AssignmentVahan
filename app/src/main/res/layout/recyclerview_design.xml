@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="149dp"
+    android:orientation="horizontal"
+    android:clickable="true"
+    android:focusable="true"
+     android:layout_marginLeft="40dp"
+    android:layout_marginRight="30dp"
+    android:layout_marginTop="30dp"
+    android:background="@drawable/layout_recycler"
+    app:cardElevation="10dp"
+    app:cardCornerRadius="30dp"
+
+
+    >
+
+
+
+<androidx.appcompat.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:orientation="vertical"
+
+
+        >
+        <TextView
+            android:id="@+id/universityName_id"
+            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:maxLines="1"
+            android:textColor="@color/black"
+            android:text="University Name"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/country_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="Country"
+            android:textStyle="bold"
+            android:textColor="#353333"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/visit_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+
+            android:text="Visit"
+            android:textColor="@color/black"
+               android:background="@drawable/layout_recycler"
+            android:textStyle="bold" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.cardview.widget.CardView>
