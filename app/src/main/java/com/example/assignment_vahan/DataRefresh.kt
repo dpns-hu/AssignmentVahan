@@ -11,6 +11,7 @@ import android.os.IBinder
 import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.example.assignment_vahan.MainActivity.Companion.Base_Url
+import dataLoader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -23,6 +24,7 @@ class DataRefresh : Service() {
     private val refreshIntervalMillis = 10 * 1000L // 10 seconds
     private val dataRefreshTimer = Timer()
     var list: ArrayList<Items> = ArrayList()
+    private val dataLoader = dataLoader()
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
@@ -61,14 +63,7 @@ class DataRefresh : Service() {
 
             GlobalScope.launch(Dispatchers.IO) {
                 try {
-
-                    val retrofit = Retrofit.Builder()
-                        .baseUrl(Base_Url)
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build()
-                    val apiService = retrofit.create(ApiInterface::class.java)
-                    val response = apiService.getData().execute()
-
+                  val response = dataLoader.fetchData()
                     launch(Dispatchers.Main) {
 
                         if (response.isSuccessful) {

@@ -20,6 +20,7 @@
         import com.example.assignment_vahan.MyAdapter
         import com.example.assignment_vahan.databinding.ActivityMainBinding
         import com.example.assignment_vahan.webviewActivity
+        import dataLoader
         import kotlinx.coroutines.CoroutineScope
         import kotlinx.coroutines.Dispatchers
         import kotlinx.coroutines.GlobalScope
@@ -37,6 +38,7 @@
             }
 
             lateinit var binding: ActivityMainBinding
+            private val dataLoader = dataLoader()
 
 
             private var dataRefreshService: DataRefresh? = null
@@ -98,13 +100,8 @@
                 // Use coroutines to run the network request in a background thread
                 GlobalScope.launch(Dispatchers.IO) {
                     try {
-                        val retrofit = Retrofit.Builder()
-                            .baseUrl(Base_Url)
-                            .addConverterFactory(GsonConverterFactory.create())
-                            .build()
-                        val apiService = retrofit.create(ApiInterface::class.java)
-                        val response = apiService.getData().execute()
 
+                        val response = dataLoader.fetchData()
                         // Switch back to the main thread to update UI
                         launch(Dispatchers.Main) {
                             handleResponse(response)
