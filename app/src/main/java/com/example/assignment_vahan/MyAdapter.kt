@@ -38,9 +38,5 @@
             }
 
         }
-         fun updateData(newData: ArrayList<Items>) {
-            list = newData
-            notifyDataSetChanged()
-             Toast.makeText(context,"it working dumbo", Toast.LENGTH_SHORT).show()
-        }
+
     }

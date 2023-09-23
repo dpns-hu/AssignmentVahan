@@ -12,6 +12,6 @@ class DataStorage {
             dataList.clear()
             dataList.addAll(newData)
         }
-        var flag : Boolean = true
+
     }
 }

@@ -38,7 +38,7 @@
 
             lateinit var binding: ActivityMainBinding
 
-            lateinit var newlist: ArrayList<Items>
+
             private var dataRefreshService: DataRefresh? = null
             lateinit var adpter: MyAdapter
             override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,19 +111,19 @@
                         }
                     } catch (e: Exception) {
                         Log.e("error", "Exception: ${e.message}", e)
-                        // Handle the exception, e.g., show an error message to the user
+
                     }
                 }
             }
             private val dataUpdateReceiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context?, intent: Intent?) {
                     if (intent?.action == "com.example.assignment_vahan.DATA_UPDATED") {
-                        // Extract the updated list from the intent
+
                         if (DataStorage.getDataList() != null) {
-                            // Update the data in your adapter
+
                             adpter.list = DataStorage.getDataList()
                             binding.totalId.text = "Total Items ${DataStorage.getDataList().size}"
-                            // Notify the adapter that the data has changed
+
                             adpter.notifyDataSetChanged()
                         }
                     }
@@ -147,8 +147,6 @@
 
                 }
             }
-
-
 
                 }
 

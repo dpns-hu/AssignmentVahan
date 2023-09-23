@@ -12,18 +12,11 @@
     android:background="@drawable/layout_recycler"
     app:cardElevation="10dp"
     app:cardCornerRadius="30dp"
-
-
-    >
-
-
-
+        >
 <androidx.appcompat.widget.LinearLayoutCompat
     android:layout_width="match_parent"
     android:layout_height="match_parent"
         android:orientation="vertical"
-
-
         >
         <TextView
             android:id="@+id/universityName_id"

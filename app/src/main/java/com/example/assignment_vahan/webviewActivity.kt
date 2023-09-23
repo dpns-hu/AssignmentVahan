@@ -31,8 +31,6 @@ class webviewActivity : AppCompatActivity() {
         }
 
         if (url != null) {
-
-
             binding.webviewId.settings.javaScriptEnabled = true
             binding.webviewId.clearCache(true)
 

@@ -38,7 +38,7 @@ class DataRefresh : Service() {
 
         val notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Data Updated")
-            .setContentText("New data is available.")
+            .setContentText("Updating in every 10 seconds")
             .setSmallIcon(R.drawable.ic_launcher_background)
             .setPriority(NotificationCompat.PRIORITY_LOW)
             .build()
@@ -52,7 +52,7 @@ class DataRefresh : Service() {
     private inner class DataRefreshTask : TimerTask() {
         override fun run() {
             loadDataInBackground()
-            Log.d("DataRefresh", "Data refresh started")
+            Log.d("DataRefresh", "Data refreshed")
         }
     }
 
@@ -61,6 +61,7 @@ class DataRefresh : Service() {
 
             GlobalScope.launch(Dispatchers.IO) {
                 try {
+
                     val retrofit = Retrofit.Builder()
                         .baseUrl(Base_Url)
                         .addConverterFactory(GsonConverterFactory.create())
@@ -69,19 +70,15 @@ class DataRefresh : Service() {
                     val response = apiService.getData().execute()
 
                     launch(Dispatchers.Main) {
+
                         if (response.isSuccessful) {
                             val data = response.body()
                             data?.let {
                                 list.clear()
                                 list.addAll(it)
-
-
-
                                 DataStorage.updateDataList(list)
-
                                 val intent = Intent("com.example.assignment_vahan.DATA_UPDATED")
                                 sendBroadcast(intent)
-
                             }
                         } else {
                             Log.d("error", "Failed")
@@ -91,10 +88,6 @@ class DataRefresh : Service() {
                     Log.e("error", "Exception: ${e.message}", e)
                 }
             }
-
-
-
-
         }
 
     private fun createNotificationChannel() {
